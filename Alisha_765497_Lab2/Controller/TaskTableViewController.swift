@@ -245,7 +245,12 @@ class TaskTableViewController: UITableViewController,UISearchBarDelegate {
                    do{
                        let result = try context.fetch(fetchReq)
                        tasks = result as! [NSManagedObject]
-                   }
+                    if tasks == nil{
+                        let alertController = UIAlertController(title: "fill your task first", message: "", preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(alertController,animated: true,completion: nil)
+                    }
+                }
                    catch{
                       print(error)
                       
